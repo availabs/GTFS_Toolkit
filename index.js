@@ -9,5 +9,7 @@
  */
 
 module.exports = {
-    GTFS_Wrapper : require('./lib/GTFS_Wrapper') ,
+    GTFS_Wrapper        : require('./lib/GTFS_Wrapper')        ,
+    scheduleDataIndexer : require('./lib/scheduleDataIndexer') ,
+    spatialDataIndexer  : require('./lib/spatialDataIndexer')  ,
 };
