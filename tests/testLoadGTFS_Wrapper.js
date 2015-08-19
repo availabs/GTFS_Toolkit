@@ -2,9 +2,13 @@
 
 'use strict';
 
+var testConfig = require('./testConfig');
+
+
+
 var wrapper = require('../lib/GTFS_Wrapper.js'),
 
-    obj = wrapper.newGTFSWrapperForScheduleDate();
+    obj = wrapper.Factory(testConfig).newGTFSWrapperForScheduleDate();
 
 console.log(JSON.stringify(obj, null, '    '));
 
