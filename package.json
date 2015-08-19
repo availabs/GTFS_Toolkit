@@ -1,0 +1,25 @@
+{
+  "name": "GTFS_Toolkit",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Parses data, persisting indices on the scheduling and spatial data. Also provides a layer of abstraction via a wrapper module.",
+  "keywords": [
+    "GTFS"
+  ],
+  "dependencies": {
+    "async": "^1.4.2",
+    "csvtojson": "^0.4.2",
+    "jsonfile": "^2.2.1",
+    "lodash": "^3.10.1",
+    "turf": "^2.0.2"
+  },
+  "scripts": {},
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/availabs/GTFS_Toolkit.git"
+  },
+  "author": "paultomchik",
+  "license": "",
+  "devDependencies": {}
+}

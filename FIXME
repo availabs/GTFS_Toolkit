@@ -1,0 +1,17 @@
+* Currently does NOT HANDLE THE TRANSITION FROM ONE GTFS SCHEDULE TO THE NEXT.
+
+* Reducing redundancy in the spatial data indices can significantly reduce their size.
+    The same grouping used the indexing script for memoization should be used when persisting.
+
+* The current naming scheme for subdirectories in the GTFS_Data/ directory
+    currently use the first effective date. 
+    
+    This DOES NOT match how transitfeeds.com handles the dates.
+
+* The Wrapper will need to take the GTFS version as an optional param to handle the transition case,
+    and should default to the version currently in use.
+    
+* Need to implement an admin interface for whatever CRUD operations are needed/wanted.
+
+* Need to implement simple getters for the indices. 
+    default to current version, allow specifcation
