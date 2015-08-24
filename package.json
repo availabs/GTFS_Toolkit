@@ -13,7 +13,9 @@
     "lodash": "^3.10.1",
     "turf": "^2.0.2"
   },
-  "scripts": {},
+  "scripts": {
+    "test" : "jest"
+  },
   "main": "index.js",
   "repository": {
     "type": "git",
@@ -21,5 +23,8 @@
   },
   "author": "paultomchik",
   "license": "",
-  "devDependencies": {}
+  "devDependencies": {
+    "jest": "^0.1.40",
+    "jest-cli": "^0.4.x"
+  }
 }
