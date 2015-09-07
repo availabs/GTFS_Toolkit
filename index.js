@@ -9,8 +9,6 @@
  */
 
 module.exports = {
-    Wrapper             : require('./lib/Wrapper.js')             ,
-    WrapperFactory      : require('./lib/Factory.js')             ,
-    scheduleDataIndexer : require('./lib/scheduleDataIndexer.js') ,
-    spatialDataIndexer  : require('./lib/spatialDataIndexer.js')  ,
+    Wrapper             : require('./lib/Wrapper.js')     ,
+    FeedHandler         : require('./lib/FeedHandler.js') ,
 };

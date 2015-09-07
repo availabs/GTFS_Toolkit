@@ -7,14 +7,18 @@
     "GTFS"
   ],
   "dependencies": {
+    "adm-zip": "^0.4.7",
     "async": "^1.4.2",
     "csvtojson": "^0.4.2",
     "jsonfile": "^2.2.1",
     "lodash": "^3.10.1",
+    "mkdirp": "^0.5.1",
+    "request": "^2.61.0",
+    "rimraf": "^2.4.3",
     "turf": "^2.0.2"
   },
   "scripts": {
-    "test" : "jest"
+    "test": "jest"
   },
   "main": "index.js",
   "repository": {
