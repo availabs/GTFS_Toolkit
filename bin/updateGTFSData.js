@@ -112,13 +112,7 @@ function cleanup (callback) {
 //================================ The workers ====================================\\
 
 function removeTmpDir (callback) {
-    fs.exists(config.tmpDirPath, function (doesExist) {
-        if (doesExist) {
-            rimraf(config.tmpDirPath, callback);
-        } else {
-            if (callback) { callback(); }
-        }
-    });
+    rimraf(config.tmpDirPath, callback);
 }
 
 
