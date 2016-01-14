@@ -6,9 +6,18 @@
  * This script is _NOT_ to be run while any code is using the data.
  * This script will NOT coordinate with the GTFS_Toolkit.Factory.
  *
- * To update the GTFS data for a running app, use the GTFS_Toolkit.FeedHandler.update method.
- *
+ * To update the GTFS data for a running server, use the GTFS_Toolkit.FeedHandler.update method.
  */
+
+/**
+ * Command line arguments:
+ *      1. path to the GTFS configuration node module.
+ *      2. [optional] source from which to get the data. [file|url]
+ *                      If no source given, data will be retrieved 
+ *                      from the config.feedURL. 
+ */
+
+
 var request   = require('request') ,
     fs        = require('fs')      ,
     path      = require('path')    ,
@@ -29,31 +38,31 @@ if (process.argv.length < 3) {
 var config = require(process.argv[2]);  // Put the config in the file scope.
 
 
-
-if ( (process.argv.length < 4) && ( ! config.latestDataURL ) ) {
-    console.error('Usage: The URL to the latest data must be specified either\n' + 
-                          '\tin the GTFS config file\n\tor as the second command line parameter.');
+if ( (process.argv.length < 4) && ( !config.feedURL ) ) {
+    // To avoid confusing error messages, all code calling this script should provide both
+    // arguments, the config file path and the source type. 
+    console.error('Usage: If a "source" is not given as the second command line argument,\n' +
+                  '       it is assumed that the data should be retreived from config.feedURL.\n' +
+                  '       Therefore, you must either specify the feedURL in the config file,\n' +
+                  '       or upload the GTFS feed data to the location given as\n' +
+                  '       feedDataZipFilePath in the config file.\n');
     process.exit(1);
 }
 
-
-
 //======================= Put config values in global scope. =========================\\
 
-var dataURL     = process.argv[3] || config.latestDataURL  ,
-    
-    zipFilePath = path.join(config.tmpDirPath, 'gtfs.zip') ;
-
+var source = process.argv[3] || 'url';
 
 var scheduleDataIndexer = require('../lib/scheduleDataIndexer.js') ,
     spatialDataIndexer  = require('../lib/spatialDataIndexer.js')  ;
 
 
-
 //============================ Starts the ball rolling. =============================\\
 
 (function () {
-    async.series([stage_1, stage_2, stage_3], function (err) {
+    var requiredStages = (source === 'url') ? [stage_1, stage_2, stage_3] : [stage_2, stage_3];
+
+    async.series(requiredStages, function (err) {
         if (err) {
             try {
                 cleanup();
@@ -68,7 +77,6 @@ var scheduleDataIndexer = require('../lib/scheduleDataIndexer.js') ,
 }());
 
 
-
 //================================ Coordinaters ===================================\\
 
 function stage_1 (callback) {
@@ -76,7 +84,6 @@ function stage_1 (callback) {
         removeTmpDir       ,
         createTmpDir       ,
         downloadStaticGTFS ,
-        unzipStaticGTFS    ,
     ];
 
     async.series(tasks, callback);
@@ -86,7 +93,8 @@ function stage_1 (callback) {
 
 function stage_2 (callback) {
     var tasks = [
-        indexGTFSData ,
+        unzipStaticGTFS ,
+        indexGTFSData   ,
     ];
 
     async.series(tasks, callback);
@@ -125,10 +133,10 @@ function createTmpDir (callback) {
 
 //http://stackoverflow.com/a/22907134
 function downloadStaticGTFS (callback) {
-    var zipFile = fs.createWriteStream(zipFilePath);
+    var zipFile = fs.createWriteStream(config.feedDataZipFilePath);
 
     try {
-        request(dataURL).pipe(zipFile);
+        request(config.feedURL).pipe(zipFile);
 
         zipFile.on('finish', function () {
             zipFile.close(callback);  
@@ -141,7 +149,7 @@ function downloadStaticGTFS (callback) {
 
 
 function unzipStaticGTFS (callback) {
-    var zip = new admZip(zipFilePath);
+    var zip = new admZip(config.feedDataZipFilePath);
 
     zip.extractAllToAsync(config.tmpDirPath, true, callback);
 }
