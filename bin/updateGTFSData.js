@@ -67,7 +67,7 @@ var scheduleDataIndexer = require('../lib/scheduleDataIndexer.js') ,
             try {
                 cleanup();
             } finally {
-                console.error(err);
+                console.error(err.stack || err);
                 process.exit(1);
             }
         } else {
