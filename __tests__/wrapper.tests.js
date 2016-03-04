@@ -9,8 +9,8 @@ describe('Wrapper', function() {
             Wrapper  = require('../lib/Wrapper.js'),
             config   = require('./.config.js'),
 
-            indexedScheduleData = jsonfile.readFileSync(path.join(config.dataDirPath, config.indexedScheduleDataFileName)),
-            indexedSpatialData  = jsonfile.readFileSync(path.join(config.dataDirPath, config.indexedSpatialDataFileName)),
+            indexedScheduleData = jsonfile.readFileSync(path.join(config.dataDirPath, config.indexedScheduleDataFilePath)),
+            indexedSpatialData  = jsonfile.readFileSync(path.join(config.dataDirPath, config.indexedSpatialDataFilePath)),
 
             wrapper = new Wrapper(indexedScheduleData, indexedSpatialData);
             
