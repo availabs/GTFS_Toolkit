@@ -37,7 +37,7 @@ if (process.argv.length < 3) {
 
 var config = require(process.argv[2]);  // Put the config in the file scope.
 
-console.log('++++' + config.indexingStatisticsFilePath + '++++');
+console.log('++++' + config.indexingStatisticsLogPath + '++++');
 
 if ( (process.argv.length < 4) && ( !config.feedURL ) ) {
     // To avoid confusing error messages, all code calling this script should provide both
@@ -171,7 +171,7 @@ function moveIndices (callback) {
     var keepers = [
         config.indexedScheduleDataFilePath ,
         config.indexedSpatialDataFilePath  ,
-        config.indexingStatisticsFilePath  ,
+        config.indexingStatisticsLogPath  ,
     ];
 
     
