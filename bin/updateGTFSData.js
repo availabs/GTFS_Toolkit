@@ -20,45 +20,56 @@
 
 var request   = require('request') ,
     fs        = require('fs')      ,
-    path      = require('path')    ,
     async     = require('async')   ,
     mkdirp    = require('mkdirp')  ,
     rimraf    = require('rimraf')  ,
     admZip    = require('adm-zip') ;
 
+var scheduleDataIndexer = require('../lib/scheduleDataIndexer.js') ,
+    spatialDataIndexer  = require('../lib/spatialDataIndexer.js')  ;
+
 
 
 //=================== Ensure we have gotten all the required info. ===================\\
 
+var usageMessage;
+
 if (process.argv.length < 3) {
-    console.error('Usage: The GTFS config file path is required.');
+
+    usageMessage = 'Usage: The GTFS config file path is required.' ;
+
+    console.error(usageMessage);
+    sendMessageToParentProcess({
+        error: 'Error: Server error while indexing the GTFS schedule data.', 
+        debug: new Error(usageMessage) ,
+    }) ;
     process.exit(1);
 }
 
 var config = require(process.argv[2]);  // Put the config in the file scope.
 
-console.log('++++' + config.indexingStatisticsLogPath + '++++');
 
 if ( (process.argv.length < 4) && ( !config.feedURL ) ) {
-    // To avoid confusing error messages, all code calling this script should provide both
-    // arguments, the config file path and the source type. 
-    console.error('Usage: If a "source" is not given as the second command line argument,\n' +
-                  '       it is assumed that the data should be retreived from config.feedURL.\n' +
-                  '       Therefore, you must either specify the feedURL in the config file,\n' +
-                  '       or upload the GTFS feed data to the location given as\n' +
-                  '       feedDataZipFilePath in the config file.\n');
+
+    usageMessage = 'Usage: If a "source" is not given as the second command line argument,\n' +
+                   '       it is assumed that the data should be retreived from config.feedURL.\n' +
+                   '       Therefore, you must either specify the feedURL in the config file,\n' +
+                   '       or upload the GTFS feed data to the location given as\n' +
+                   '       feedDataZipFilePath in the config file.\n' ;
+
+    console.log(usageMessage);
+    sendMessageToParentProcess({
+        error: 'Error: Server error while indexing the GTFS schedule data.', 
+        debug: new Error(usageMessage).stack ,
+    }) ;
     process.exit(1);
 }
 
-//======================= Put config values in global scope. =========================\\
 
 var source = process.argv[3] || 'url';
 
-var scheduleDataIndexer = require('../lib/scheduleDataIndexer.js') ,
-    spatialDataIndexer  = require('../lib/spatialDataIndexer.js')  ;
-
-
 //============================ Starts the ball rolling. =============================\\
+
 
 (function () {
     var requiredStages = (source === 'url') ? [stage_1, stage_2, stage_3] : [stage_2, stage_3];
@@ -69,10 +80,22 @@ var scheduleDataIndexer = require('../lib/scheduleDataIndexer.js') ,
                 cleanup();
             } finally {
                 console.error(err.stack || err);
+
+                sendMessageToParentProcess({
+                    error: 'The GTFS data update failed.' ,
+                    debug: err.stack || err ,
+                }) ;
+
                 process.exit(1);
             }
         } else {
             console.log('GTFS data update complete.');
+
+            sendMessageToParentProcess({ 
+                info: 'GTFS data update complete.' 
+            });
+
+            process.exit(0);
         }
     });
 }());
@@ -82,8 +105,8 @@ var scheduleDataIndexer = require('../lib/scheduleDataIndexer.js') ,
 
 function stage_1 (callback) {
     var tasks = [
-        removeTmpDir       ,
-        createTmpDir       ,
+        removeTmpDir ,
+        createDirectories ,
         downloadStaticGTFS ,
     ];
 
@@ -105,7 +128,6 @@ function stage_2 (callback) {
 
 function stage_3 (callback) {
     var tasks = [
-        moveIndices  ,
         removeTmpDir ,
     ];
 
@@ -114,6 +136,9 @@ function stage_3 (callback) {
 
 
 function cleanup (callback) {
+    sendMessageToParentProcess({
+        debug: 'Removing the GTFS update work directory.' ,
+    }) ;
     removeTmpDir(callback);
 }
 
@@ -126,23 +151,52 @@ function removeTmpDir (callback) {
 
 
 
-function createTmpDir (callback) {
-    mkdirp(config.tmpDirPath, callback);
+function createDirectories (callback) {
+
+    mkdirp(config.dataDirPath, function (err) {
+        if (err) { 
+            sendMessageToParentProcess({ error: 'Error encountered while creating the GTFS data directory.' , }) ;
+            callback(err); 
+        } else {
+            mkdirp(config.tmpDirPath, function (err) {
+                if (err) {
+                    sendMessageToParentProcess({
+                        error: 'Error encountered while creating the GTFS update work directory.' ,
+                    }) ;
+                    return callback(err) ;
+                }
+                callback(null);
+            });
+        }
+    });
 }
 
 
 
 //http://stackoverflow.com/a/22907134
 function downloadStaticGTFS (callback) {
-    var zipFile = fs.createWriteStream(config.feedDataZipFilePath);
-
     try {
-        request(config.feedURL).pipe(zipFile);
+        var gtfsFeedZipFile = 
+                fs.createWriteStream(config.feedDataZipFilePath) 
+                  .on('error', function (err) {
+                          sendMessageToParentProcess({
+                              error: 'Error encountered writing the GTFS zip archive file to disk.' ,
+                          }) ;
+                          callback(err); 
+                      })
+                  .on('finish', function () {
+                          sendMessageToParentProcess({ debug: 'GTFS feed zip file download complete.' , }) ;
+                          gtfsFeedZipFile.close(callback); 
+                      });
 
-        zipFile.on('finish', function () {
-            zipFile.close(callback);  
-        });
+            sendMessageToParentProcess({ debug: 'Downloading the GTFS feed zip file.' , }) ;
+
+            request(config.feedURL).pipe(gtfsFeedZipFile);
+
     } catch (e) {
+        sendMessageToParentProcess({
+            error: 'GTFS feed zip file download encountered an error.' 
+        });
         callback(e);
     }
 }
@@ -152,7 +206,21 @@ function downloadStaticGTFS (callback) {
 function unzipStaticGTFS (callback) {
     var zip = new admZip(config.feedDataZipFilePath);
 
-    zip.extractAllToAsync(config.tmpDirPath, true, callback);
+    sendMessageToParentProcess({
+        debug: 'Extracting the GTFS feed data from the zip archive.'
+    });
+    zip.extractAllToAsync(config.tmpDirPath, true, function (err) {
+        if (err) {
+            sendMessageToParentProcess({
+                error: 'Error encountered while extracting the GTFS feed data.'
+            });
+            return callback(err) ;
+        }
+        sendMessageToParentProcess({
+            debug: 'Successfully extracted the GTFS feed data from the zip archive.'
+        });
+        callback(null);
+    });
 }
 
 
@@ -163,30 +231,17 @@ function indexGTFSData (callback) {
             spatialDataIndexer.run.bind(null, config.tmpDirPath, config)  ,
         ];
 
+    sendMessageToParentProcess({
+        info: 'Starting indexing tasks.'
+    });
     async.parallel(indexingTasks, callback);
 }
 
 
-function moveIndices (callback) {
-    var keepers = [
-        config.indexedScheduleDataFilePath ,
-        config.indexedSpatialDataFilePath  ,
-        config.indexingStatisticsLogPath  ,
-    ];
 
-    
-    //http://stackoverflow.com/a/17654067
-    async.each(keepers, function (fileName, cb) {
-        var sourcePath = path.join(config.tmpDirPath, fileName)  ,
-            destPath   = path.join(config.dataDirPath, fileName) ,
-
-            source     = fs.createReadStream(sourcePath)         ,
-            dest       = fs.createWriteStream(destPath)          ;
-
-
-        source.pipe(dest);
-        source.on('end', cb);
-        source.on('error', cb);
-
-    }, callback);
+function sendMessageToParentProcess (message) {
+    if (process.send) { 
+        message.timestamp = Date.now() ;
+        process.send(message);
+    }
 }
