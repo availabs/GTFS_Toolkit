@@ -46,7 +46,29 @@ if (process.argv.length < 3) {
     process.exit(1);
 }
 
-var config = require(process.argv[2]);  // Put the config in the file scope.
+
+
+//var config = require(process.argv[2]);  // Put the config in the file scope.
+
+// Put the config in the file scope.
+var configSource = require(process.argv[2]),
+    config = (configSource && (typeof configSource.getGTFSConfig === 'function')) ? 
+                configSource.getGTFSConfig() : configSource ;
+
+
+
+// http://stackoverflow.com/a/32108184
+if (!config || ((Object.keys(config).length === 0) && (JSON.stringify(config) === JSON.stringify({})))) {
+
+    var usageMessage = 'Invalid configuration source for the GTFS feed.';
+
+    console.error(usageMessage);
+    sendMessageToParentProcess({
+        error: 'Error: Server error while indexing the GTFS schedule data.', 
+        debug: new Error(usageMessage) ,
+    }) ;
+    process.exit(1);
+}
 
 
 if ( (process.argv.length < 4) && ( !config.feedURL ) ) {
@@ -146,7 +168,7 @@ function cleanup (callback) {
 //================================ The workers ====================================\\
 
 function removeTmpDir (callback) {
-    rimraf(config.tmpDirPath, callback);
+    rimraf(config.workDirPath, callback);
 }
 
 
@@ -158,7 +180,7 @@ function createDirectories (callback) {
             sendMessageToParentProcess({ error: 'Error encountered while creating the GTFS data directory.' , }) ;
             callback(err); 
         } else {
-            mkdirp(config.tmpDirPath, function (err) {
+            mkdirp(config.workDirPath, function (err) {
                 if (err) {
                     sendMessageToParentProcess({
                         error: 'Error encountered while creating the GTFS update work directory.' ,
@@ -209,7 +231,7 @@ function unzipStaticGTFS (callback) {
     sendMessageToParentProcess({
         debug: 'Extracting the GTFS feed data from the zip archive.'
     });
-    zip.extractAllToAsync(config.tmpDirPath, true, function (err) {
+    zip.extractAllToAsync(config.workDirPath, true, function (err) {
         if (err) {
             sendMessageToParentProcess({
                 error: 'Error encountered while extracting the GTFS feed data.'
@@ -227,8 +249,8 @@ function unzipStaticGTFS (callback) {
 
 function indexGTFSData (callback) {
     var indexingTasks = [
-            scheduleDataIndexer.run.bind(null, config.tmpDirPath, config) ,
-            spatialDataIndexer.run.bind(null, config.tmpDirPath, config)  ,
+            scheduleDataIndexer.run.bind(null, config.workDirPath, config) ,
+            spatialDataIndexer.run.bind(null, config.workDirPath, config)  ,
         ];
 
     sendMessageToParentProcess({
