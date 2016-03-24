@@ -7,9 +7,11 @@
     "GTFS"
   ],
   "dependencies": {
+    "JSONStream": "^1.1.1",
     "adm-zip": "^0.4.7",
     "async": "^1.4.2",
     "csvtojson": "^0.4.2",
+    "event-stream": "^3.3.2",
     "jsonfile": "^2.2.1",
     "lodash": "^3.10.1",
     "mkdirp": "^0.5.1",
