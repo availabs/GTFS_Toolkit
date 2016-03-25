@@ -264,7 +264,7 @@ function indexGTFSData (callback) {
 
 function sendMessageToParentProcess (message) {
     if (process.send) { 
-        message.timestamp = parseInt(process.hrtime().join(''))/1000 ;
+        message.timestamp = (Date.now() + (process.hrtime()[1]%1000000)/1000000) ;
         process.send(message);
     }
 }
