@@ -18,11 +18,12 @@
  */
 
 
-var request   = require('request') ,
-    fs        = require('fs')      ,
-    async     = require('async')   ,
-    mkdirp    = require('mkdirp')  ,
-    rimraf    = require('rimraf')  ,
+var fs        = require('fs') ,
+    process   = require('process') ,
+    request   = require('request') ,
+    async     = require('async') ,
+    mkdirp    = require('mkdirp') ,
+    rimraf    = require('rimraf') ,
     admZip    = require('adm-zip') ;
 
 var scheduleDataIndexer = require('../lib/scheduleDataIndexer.js') ,
@@ -263,7 +264,7 @@ function indexGTFSData (callback) {
 
 function sendMessageToParentProcess (message) {
     if (process.send) { 
-        message.timestamp = Date.now() ;
+        message.timestamp = (Date.now() + (process.hrtime()[1]%1000000)/1000000) ;
         process.send(message);
     }
 }
