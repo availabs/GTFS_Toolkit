@@ -17,10 +17,7 @@
     "mkdirp": "^0.5.1",
     "request": "^2.61.0",
     "rimraf": "^2.4.3",
-    "turf-distance": "^3.0.5",
-    "turf-linestring": "^1.0.2",
-    "turf-point": "^2.0.1",
-    "turf-point-on-line": "^3.0.5"
+    "turf": "^3.0.5"
   },
   "scripts": {
     "test": "jest"

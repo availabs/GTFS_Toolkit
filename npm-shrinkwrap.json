@@ -7,15 +7,65 @@
       "from": "adm-zip@>=0.4.7 <0.5.0",
       "resolved": "https://registry.npmjs.org/adm-zip/-/adm-zip-0.4.7.tgz"
     },
+    "affine-hull": {
+      "version": "1.0.0",
+      "from": "affine-hull@>=1.0.0 <2.0.0",
+      "resolved": "https://registry.npmjs.org/affine-hull/-/affine-hull-1.0.0.tgz"
+    },
+    "ansi-regex": {
+      "version": "2.0.0",
+      "from": "ansi-regex@>=2.0.0 <3.0.0",
+      "resolved": "https://registry.npmjs.org/ansi-regex/-/ansi-regex-2.0.0.tgz"
+    },
+    "ansi-styles": {
+      "version": "2.2.1",
+      "from": "ansi-styles@>=2.2.1 <3.0.0",
+      "resolved": "https://registry.npmjs.org/ansi-styles/-/ansi-styles-2.2.1.tgz"
+    },
     "async": {
       "version": "1.5.1",
       "from": "async@>=1.4.2 <2.0.0",
       "resolved": "https://registry.npmjs.org/async/-/async-1.5.1.tgz"
     },
+    "bit-twiddle": {
+      "version": "1.0.2",
+      "from": "bit-twiddle@>=1.0.0 <2.0.0",
+      "resolved": "https://registry.npmjs.org/bit-twiddle/-/bit-twiddle-1.0.2.tgz"
+    },
+    "chalk": {
+      "version": "1.1.3",
+      "from": "chalk@>=1.1.0 <2.0.0",
+      "resolved": "https://registry.npmjs.org/chalk/-/chalk-1.1.3.tgz"
+    },
+    "concat-stream": {
+      "version": "1.4.10",
+      "from": "concat-stream@>=1.4.4 <1.5.0",
+      "resolved": "https://registry.npmjs.org/concat-stream/-/concat-stream-1.4.10.tgz"
+    },
+    "convex-hull": {
+      "version": "1.0.3",
+      "from": "convex-hull@>=1.0.3 <2.0.0",
+      "resolved": "https://registry.npmjs.org/convex-hull/-/convex-hull-1.0.3.tgz"
+    },
+    "core-util-is": {
+      "version": "1.0.2",
+      "from": "core-util-is@>=1.0.0 <1.1.0",
+      "resolved": "https://registry.npmjs.org/core-util-is/-/core-util-is-1.0.2.tgz"
+    },
     "csvtojson": {
       "version": "0.4.8",
       "from": "csvtojson@>=0.4.2 <0.5.0",
       "resolved": "https://registry.npmjs.org/csvtojson/-/csvtojson-0.4.8.tgz"
+    },
+    "earcut": {
+      "version": "2.1.1",
+      "from": "earcut@>=2.0.0 <3.0.0",
+      "resolved": "https://registry.npmjs.org/earcut/-/earcut-2.1.1.tgz"
+    },
+    "escape-string-regexp": {
+      "version": "1.0.5",
+      "from": "escape-string-regexp@>=1.0.2 <2.0.0",
+      "resolved": "https://registry.npmjs.org/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz"
     },
     "event-stream": {
       "version": "3.3.2",
@@ -59,10 +109,65 @@
         }
       }
     },
+    "geojson-area": {
+      "version": "0.2.1",
+      "from": "geojson-area@>=0.2.1 <0.3.0",
+      "resolved": "https://registry.npmjs.org/geojson-area/-/geojson-area-0.2.1.tgz"
+    },
+    "geojson-fixtures": {
+      "version": "0.5.0",
+      "from": "geojson-fixtures@>=0.5.0 <0.6.0",
+      "resolved": "https://registry.npmjs.org/geojson-fixtures/-/geojson-fixtures-0.5.0.tgz"
+    },
+    "geojson-normalize": {
+      "version": "0.0.0",
+      "from": "geojson-normalize@0.0.0",
+      "resolved": "https://registry.npmjs.org/geojson-normalize/-/geojson-normalize-0.0.0.tgz"
+    },
+    "geojson-random": {
+      "version": "0.2.2",
+      "from": "geojson-random@>=0.2.2 <0.3.0",
+      "resolved": "https://registry.npmjs.org/geojson-random/-/geojson-random-0.2.2.tgz"
+    },
+    "geojsonhint": {
+      "version": "1.2.1",
+      "from": "geojsonhint@>=1.0.0 <2.0.0",
+      "resolved": "https://registry.npmjs.org/geojsonhint/-/geojsonhint-1.2.1.tgz"
+    },
+    "has-ansi": {
+      "version": "2.0.0",
+      "from": "has-ansi@>=2.0.0 <3.0.0",
+      "resolved": "https://registry.npmjs.org/has-ansi/-/has-ansi-2.0.0.tgz"
+    },
+    "has-color": {
+      "version": "0.1.7",
+      "from": "has-color@>=0.1.0 <0.2.0",
+      "resolved": "https://registry.npmjs.org/has-color/-/has-color-0.1.7.tgz"
+    },
+    "incremental-convex-hull": {
+      "version": "1.0.1",
+      "from": "incremental-convex-hull@>=1.0.1 <2.0.0",
+      "resolved": "https://registry.npmjs.org/incremental-convex-hull/-/incremental-convex-hull-1.0.1.tgz"
+    },
+    "inherits": {
+      "version": "2.0.1",
+      "from": "inherits@>=2.0.1 <2.1.0",
+      "resolved": "https://registry.npmjs.org/inherits/-/inherits-2.0.1.tgz"
+    },
+    "isarray": {
+      "version": "0.0.1",
+      "from": "isarray@0.0.1",
+      "resolved": "https://registry.npmjs.org/isarray/-/isarray-0.0.1.tgz"
+    },
     "jsonfile": {
       "version": "2.2.3",
       "from": "jsonfile@>=2.2.1 <3.0.0",
       "resolved": "https://registry.npmjs.org/jsonfile/-/jsonfile-2.2.3.tgz"
+    },
+    "jsonlint-lines": {
+      "version": "1.7.1",
+      "from": "jsonlint-lines@1.7.1",
+      "resolved": "https://registry.npmjs.org/jsonlint-lines/-/jsonlint-lines-1.7.1.tgz"
     },
     "JSONStream": {
       "version": "1.1.1",
@@ -81,15 +186,25 @@
         }
       }
     },
+    "jsts": {
+      "version": "1.1.1",
+      "from": "jsts@1.1.1",
+      "resolved": "https://registry.npmjs.org/jsts/-/jsts-1.1.1.tgz"
+    },
+    "JSV": {
+      "version": "4.0.2",
+      "from": "JSV@>=4.0.0",
+      "resolved": "https://registry.npmjs.org/JSV/-/JSV-4.0.2.tgz"
+    },
     "lodash": {
       "version": "3.10.1",
       "from": "lodash@>=3.10.1 <4.0.0",
       "resolved": "https://registry.npmjs.org/lodash/-/lodash-3.10.1.tgz"
     },
     "minimist": {
-      "version": "1.2.0",
-      "from": "minimist@>=1.1.0 <2.0.0",
-      "resolved": "https://registry.npmjs.org/minimist/-/minimist-1.2.0.tgz"
+      "version": "1.1.1",
+      "from": "minimist@1.1.1",
+      "resolved": "https://registry.npmjs.org/minimist/-/minimist-1.1.1.tgz"
     },
     "mkdirp": {
       "version": "0.5.1",
@@ -102,6 +217,38 @@
           "resolved": "https://registry.npmjs.org/minimist/-/minimist-0.0.8.tgz"
         }
       }
+    },
+    "monotone-convex-hull-2d": {
+      "version": "1.0.1",
+      "from": "monotone-convex-hull-2d@>=1.0.1 <2.0.0",
+      "resolved": "https://registry.npmjs.org/monotone-convex-hull-2d/-/monotone-convex-hull-2d-1.0.1.tgz"
+    },
+    "nomnom": {
+      "version": "1.8.1",
+      "from": "nomnom@>=1.5.0",
+      "resolved": "https://registry.npmjs.org/nomnom/-/nomnom-1.8.1.tgz",
+      "dependencies": {
+        "ansi-styles": {
+          "version": "1.0.0",
+          "from": "ansi-styles@>=1.0.0 <1.1.0",
+          "resolved": "https://registry.npmjs.org/ansi-styles/-/ansi-styles-1.0.0.tgz"
+        },
+        "chalk": {
+          "version": "0.4.0",
+          "from": "chalk@>=0.4.0 <0.5.0",
+          "resolved": "https://registry.npmjs.org/chalk/-/chalk-0.4.0.tgz"
+        },
+        "strip-ansi": {
+          "version": "0.1.1",
+          "from": "strip-ansi@>=0.1.0 <0.2.0",
+          "resolved": "https://registry.npmjs.org/strip-ansi/-/strip-ansi-0.1.1.tgz"
+        }
+      }
+    },
+    "readable-stream": {
+      "version": "1.1.14",
+      "from": "readable-stream@>=1.1.9 <1.2.0",
+      "resolved": "https://registry.npmjs.org/readable-stream/-/readable-stream-1.1.14.tgz"
     },
     "request": {
       "version": "2.67.0",
@@ -541,45 +688,330 @@
         }
       }
     },
+    "robust-orientation": {
+      "version": "1.1.3",
+      "from": "robust-orientation@>=1.1.3 <2.0.0",
+      "resolved": "https://registry.npmjs.org/robust-orientation/-/robust-orientation-1.1.3.tgz"
+    },
+    "robust-scale": {
+      "version": "1.0.2",
+      "from": "robust-scale@>=1.0.2 <2.0.0",
+      "resolved": "https://registry.npmjs.org/robust-scale/-/robust-scale-1.0.2.tgz"
+    },
+    "robust-subtract": {
+      "version": "1.0.0",
+      "from": "robust-subtract@>=1.0.0 <2.0.0",
+      "resolved": "https://registry.npmjs.org/robust-subtract/-/robust-subtract-1.0.0.tgz"
+    },
+    "robust-sum": {
+      "version": "1.0.0",
+      "from": "robust-sum@>=1.0.0 <2.0.0",
+      "resolved": "https://registry.npmjs.org/robust-sum/-/robust-sum-1.0.0.tgz"
+    },
+    "simplicial-complex": {
+      "version": "1.0.0",
+      "from": "simplicial-complex@>=1.0.0 <2.0.0",
+      "resolved": "https://registry.npmjs.org/simplicial-complex/-/simplicial-complex-1.0.0.tgz"
+    },
+    "simplify-js": {
+      "version": "1.2.1",
+      "from": "simplify-js@>=1.2.1 <2.0.0",
+      "resolved": "https://registry.npmjs.org/simplify-js/-/simplify-js-1.2.1.tgz"
+    },
+    "string_decoder": {
+      "version": "0.10.31",
+      "from": "string_decoder@>=0.10.0 <0.11.0",
+      "resolved": "https://registry.npmjs.org/string_decoder/-/string_decoder-0.10.31.tgz"
+    },
+    "strip-ansi": {
+      "version": "3.0.1",
+      "from": "strip-ansi@>=3.0.0 <4.0.0",
+      "resolved": "https://registry.npmjs.org/strip-ansi/-/strip-ansi-3.0.1.tgz"
+    },
+    "supports-color": {
+      "version": "2.0.0",
+      "from": "supports-color@>=2.0.0 <3.0.0",
+      "resolved": "https://registry.npmjs.org/supports-color/-/supports-color-2.0.0.tgz"
+    },
+    "text-table": {
+      "version": "0.2.0",
+      "from": "text-table@>=0.2.0 <0.3.0",
+      "resolved": "https://registry.npmjs.org/text-table/-/text-table-0.2.0.tgz"
+    },
+    "turf": {
+      "version": "3.0.5",
+      "from": "turf@latest",
+      "resolved": "https://registry.npmjs.org/turf/-/turf-3.0.5.tgz"
+    },
+    "turf-along": {
+      "version": "3.0.5",
+      "from": "turf-along@>=3.0.5 <4.0.0",
+      "resolved": "https://registry.npmjs.org/turf-along/-/turf-along-3.0.5.tgz"
+    },
+    "turf-area": {
+      "version": "3.0.1",
+      "from": "turf-area@>=3.0.1 <4.0.0",
+      "resolved": "https://registry.npmjs.org/turf-area/-/turf-area-3.0.1.tgz"
+    },
+    "turf-bbox": {
+      "version": "3.0.1",
+      "from": "turf-bbox@>=3.0.1 <4.0.0",
+      "resolved": "https://registry.npmjs.org/turf-bbox/-/turf-bbox-3.0.1.tgz"
+    },
+    "turf-bbox-polygon": {
+      "version": "3.0.5",
+      "from": "turf-bbox-polygon@>=3.0.5 <4.0.0",
+      "resolved": "https://registry.npmjs.org/turf-bbox-polygon/-/turf-bbox-polygon-3.0.5.tgz"
+    },
     "turf-bearing": {
       "version": "3.0.1",
       "from": "turf-bearing@>=3.0.1 <4.0.0",
       "resolved": "https://registry.npmjs.org/turf-bearing/-/turf-bearing-3.0.1.tgz"
+    },
+    "turf-bezier": {
+      "version": "3.0.5",
+      "from": "turf-bezier@>=3.0.5 <4.0.0",
+      "resolved": "https://registry.npmjs.org/turf-bezier/-/turf-bezier-3.0.5.tgz"
+    },
+    "turf-buffer": {
+      "version": "3.0.5",
+      "from": "turf-buffer@>=3.0.5 <4.0.0",
+      "resolved": "https://registry.npmjs.org/turf-buffer/-/turf-buffer-3.0.5.tgz"
+    },
+    "turf-center": {
+      "version": "3.0.5",
+      "from": "turf-center@>=3.0.5 <4.0.0",
+      "resolved": "https://registry.npmjs.org/turf-center/-/turf-center-3.0.5.tgz"
+    },
+    "turf-centroid": {
+      "version": "3.0.5",
+      "from": "turf-centroid@>=3.0.5 <4.0.0",
+      "resolved": "https://registry.npmjs.org/turf-centroid/-/turf-centroid-3.0.5.tgz"
+    },
+    "turf-collect": {
+      "version": "3.0.5",
+      "from": "turf-collect@>=3.0.5 <4.0.0",
+      "resolved": "https://registry.npmjs.org/turf-collect/-/turf-collect-3.0.5.tgz"
+    },
+    "turf-combine": {
+      "version": "3.0.5",
+      "from": "turf-combine@>=3.0.5 <4.0.0",
+      "resolved": "https://registry.npmjs.org/turf-combine/-/turf-combine-3.0.5.tgz"
+    },
+    "turf-concave": {
+      "version": "3.0.5",
+      "from": "turf-concave@>=3.0.5 <4.0.0",
+      "resolved": "https://registry.npmjs.org/turf-concave/-/turf-concave-3.0.5.tgz"
+    },
+    "turf-convex": {
+      "version": "3.0.5",
+      "from": "turf-convex@>=3.0.5 <4.0.0",
+      "resolved": "https://registry.npmjs.org/turf-convex/-/turf-convex-3.0.5.tgz"
     },
     "turf-destination": {
       "version": "3.0.5",
       "from": "turf-destination@>=3.0.5 <4.0.0",
       "resolved": "https://registry.npmjs.org/turf-destination/-/turf-destination-3.0.5.tgz"
     },
+    "turf-difference": {
+      "version": "3.0.5",
+      "from": "turf-difference@>=3.0.5 <4.0.0",
+      "resolved": "https://registry.npmjs.org/turf-difference/-/turf-difference-3.0.5.tgz"
+    },
     "turf-distance": {
       "version": "3.0.5",
-      "from": "turf-distance@latest",
+      "from": "turf-distance@>=3.0.5 <4.0.0",
       "resolved": "https://registry.npmjs.org/turf-distance/-/turf-distance-3.0.5.tgz"
+    },
+    "turf-envelope": {
+      "version": "3.0.5",
+      "from": "turf-envelope@>=3.0.5 <4.0.0",
+      "resolved": "https://registry.npmjs.org/turf-envelope/-/turf-envelope-3.0.5.tgz"
+    },
+    "turf-explode": {
+      "version": "3.0.5",
+      "from": "turf-explode@>=3.0.5 <4.0.0",
+      "resolved": "https://registry.npmjs.org/turf-explode/-/turf-explode-3.0.5.tgz"
+    },
+    "turf-flip": {
+      "version": "3.0.5",
+      "from": "turf-flip@>=3.0.5 <4.0.0",
+      "resolved": "https://registry.npmjs.org/turf-flip/-/turf-flip-3.0.5.tgz"
+    },
+    "turf-grid": {
+      "version": "1.0.1",
+      "from": "turf-grid@1.0.1",
+      "resolved": "https://registry.npmjs.org/turf-grid/-/turf-grid-1.0.1.tgz"
     },
     "turf-helpers": {
       "version": "3.0.5",
       "from": "turf-helpers@>=3.0.5 <4.0.0",
       "resolved": "https://registry.npmjs.org/turf-helpers/-/turf-helpers-3.0.5.tgz"
     },
+    "turf-hex-grid": {
+      "version": "3.0.5",
+      "from": "turf-hex-grid@>=3.0.5 <4.0.0",
+      "resolved": "https://registry.npmjs.org/turf-hex-grid/-/turf-hex-grid-3.0.5.tgz"
+    },
+    "turf-inside": {
+      "version": "3.0.5",
+      "from": "turf-inside@>=3.0.5 <4.0.0",
+      "resolved": "https://registry.npmjs.org/turf-inside/-/turf-inside-3.0.5.tgz"
+    },
+    "turf-intersect": {
+      "version": "3.0.1",
+      "from": "turf-intersect@>=3.0.1 <4.0.0",
+      "resolved": "https://registry.npmjs.org/turf-intersect/-/turf-intersect-3.0.1.tgz"
+    },
     "turf-invariant": {
       "version": "3.0.1",
       "from": "turf-invariant@>=3.0.1 <4.0.0",
       "resolved": "https://registry.npmjs.org/turf-invariant/-/turf-invariant-3.0.1.tgz"
     },
-    "turf-linestring": {
-      "version": "1.0.2",
-      "from": "turf-linestring@latest",
-      "resolved": "https://registry.npmjs.org/turf-linestring/-/turf-linestring-1.0.2.tgz"
+    "turf-isolines": {
+      "version": "3.0.5",
+      "from": "turf-isolines@>=3.0.5 <4.0.0",
+      "resolved": "https://registry.npmjs.org/turf-isolines/-/turf-isolines-3.0.5.tgz"
+    },
+    "turf-kinks": {
+      "version": "3.0.5",
+      "from": "turf-kinks@>=3.0.5 <4.0.0",
+      "resolved": "https://registry.npmjs.org/turf-kinks/-/turf-kinks-3.0.5.tgz"
+    },
+    "turf-line-distance": {
+      "version": "3.0.5",
+      "from": "turf-line-distance@>=3.0.5 <4.0.0",
+      "resolved": "https://registry.npmjs.org/turf-line-distance/-/turf-line-distance-3.0.5.tgz"
+    },
+    "turf-line-slice": {
+      "version": "3.0.5",
+      "from": "turf-line-slice@>=3.0.5 <4.0.0",
+      "resolved": "https://registry.npmjs.org/turf-line-slice/-/turf-line-slice-3.0.5.tgz"
+    },
+    "turf-meta": {
+      "version": "3.0.1",
+      "from": "turf-meta@>=3.0.1 <4.0.0",
+      "resolved": "https://registry.npmjs.org/turf-meta/-/turf-meta-3.0.1.tgz"
+    },
+    "turf-midpoint": {
+      "version": "3.0.1",
+      "from": "turf-midpoint@>=3.0.1 <4.0.0",
+      "resolved": "https://registry.npmjs.org/turf-midpoint/-/turf-midpoint-3.0.1.tgz"
+    },
+    "turf-nearest": {
+      "version": "3.0.5",
+      "from": "turf-nearest@>=3.0.5 <4.0.0",
+      "resolved": "https://registry.npmjs.org/turf-nearest/-/turf-nearest-3.0.5.tgz"
+    },
+    "turf-planepoint": {
+      "version": "3.0.1",
+      "from": "turf-planepoint@>=3.0.1 <4.0.0",
+      "resolved": "https://registry.npmjs.org/turf-planepoint/-/turf-planepoint-3.0.1.tgz"
     },
     "turf-point": {
       "version": "2.0.1",
-      "from": "turf-point@latest",
+      "from": "turf-point@>=2.0.0 <3.0.0",
       "resolved": "https://registry.npmjs.org/turf-point/-/turf-point-2.0.1.tgz"
+    },
+    "turf-point-grid": {
+      "version": "3.0.5",
+      "from": "turf-point-grid@>=3.0.5 <4.0.0",
+      "resolved": "https://registry.npmjs.org/turf-point-grid/-/turf-point-grid-3.0.5.tgz"
     },
     "turf-point-on-line": {
       "version": "3.0.5",
-      "from": "turf-point-on-line@latest",
+      "from": "turf-point-on-line@>=3.0.5 <4.0.0",
       "resolved": "https://registry.npmjs.org/turf-point-on-line/-/turf-point-on-line-3.0.5.tgz"
+    },
+    "turf-point-on-surface": {
+      "version": "3.0.5",
+      "from": "turf-point-on-surface@>=3.0.5 <4.0.0",
+      "resolved": "https://registry.npmjs.org/turf-point-on-surface/-/turf-point-on-surface-3.0.5.tgz"
+    },
+    "turf-random": {
+      "version": "3.0.1",
+      "from": "turf-random@>=3.0.1 <4.0.0",
+      "resolved": "https://registry.npmjs.org/turf-random/-/turf-random-3.0.1.tgz"
+    },
+    "turf-sample": {
+      "version": "3.0.5",
+      "from": "turf-sample@>=3.0.5 <4.0.0",
+      "resolved": "https://registry.npmjs.org/turf-sample/-/turf-sample-3.0.5.tgz"
+    },
+    "turf-simplify": {
+      "version": "3.0.1",
+      "from": "turf-simplify@>=3.0.1 <4.0.0",
+      "resolved": "https://registry.npmjs.org/turf-simplify/-/turf-simplify-3.0.1.tgz"
+    },
+    "turf-square": {
+      "version": "3.0.5",
+      "from": "turf-square@>=3.0.5 <4.0.0",
+      "resolved": "https://registry.npmjs.org/turf-square/-/turf-square-3.0.5.tgz"
+    },
+    "turf-square-grid": {
+      "version": "3.0.5",
+      "from": "turf-square-grid@>=3.0.5 <4.0.0",
+      "resolved": "https://registry.npmjs.org/turf-square-grid/-/turf-square-grid-3.0.5.tgz"
+    },
+    "turf-tag": {
+      "version": "3.0.5",
+      "from": "turf-tag@>=3.0.5 <4.0.0",
+      "resolved": "https://registry.npmjs.org/turf-tag/-/turf-tag-3.0.5.tgz"
+    },
+    "turf-tesselate": {
+      "version": "3.0.5",
+      "from": "turf-tesselate@>=3.0.5 <4.0.0",
+      "resolved": "https://registry.npmjs.org/turf-tesselate/-/turf-tesselate-3.0.5.tgz"
+    },
+    "turf-tin": {
+      "version": "3.0.5",
+      "from": "turf-tin@>=3.0.5 <4.0.0",
+      "resolved": "https://registry.npmjs.org/turf-tin/-/turf-tin-3.0.5.tgz"
+    },
+    "turf-triangle-grid": {
+      "version": "3.0.5",
+      "from": "turf-triangle-grid@>=3.0.5 <4.0.0",
+      "resolved": "https://registry.npmjs.org/turf-triangle-grid/-/turf-triangle-grid-3.0.5.tgz"
+    },
+    "turf-union": {
+      "version": "3.0.1",
+      "from": "turf-union@>=3.0.1 <4.0.0",
+      "resolved": "https://registry.npmjs.org/turf-union/-/turf-union-3.0.1.tgz"
+    },
+    "turf-within": {
+      "version": "3.0.5",
+      "from": "turf-within@>=3.0.5 <4.0.0",
+      "resolved": "https://registry.npmjs.org/turf-within/-/turf-within-3.0.5.tgz"
+    },
+    "two-product": {
+      "version": "1.0.2",
+      "from": "two-product@>=1.0.2 <2.0.0",
+      "resolved": "https://registry.npmjs.org/two-product/-/two-product-1.0.2.tgz"
+    },
+    "two-sum": {
+      "version": "1.0.0",
+      "from": "two-sum@>=1.0.0 <2.0.0",
+      "resolved": "https://registry.npmjs.org/two-sum/-/two-sum-1.0.0.tgz"
+    },
+    "typedarray": {
+      "version": "0.0.6",
+      "from": "typedarray@>=0.0.5 <0.1.0",
+      "resolved": "https://registry.npmjs.org/typedarray/-/typedarray-0.0.6.tgz"
+    },
+    "underscore": {
+      "version": "1.6.0",
+      "from": "underscore@>=1.6.0 <1.7.0",
+      "resolved": "https://registry.npmjs.org/underscore/-/underscore-1.6.0.tgz"
+    },
+    "union-find": {
+      "version": "1.0.2",
+      "from": "union-find@>=1.0.0 <2.0.0",
+      "resolved": "https://registry.npmjs.org/union-find/-/union-find-1.0.2.tgz"
+    },
+    "wgs84": {
+      "version": "0.0.0",
+      "from": "wgs84@0.0.0",
+      "resolved": "https://registry.npmjs.org/wgs84/-/wgs84-0.0.0.tgz"
     }
   }
 }
