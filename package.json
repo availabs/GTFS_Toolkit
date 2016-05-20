@@ -9,7 +9,7 @@
   "dependencies": {
     "JSONStream": "^1.1.1",
     "adm-zip": "^0.4.7",
-    "async": "^1.4.2",
+    "async": "^2.0.0-rc.5",
     "csvtojson": "^0.4.2",
     "event-stream": "^3.3.2",
     "jsonfile": "^2.2.1",
