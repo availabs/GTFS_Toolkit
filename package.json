@@ -7,7 +7,7 @@
     "GTFS"
   ],
   "dependencies": {
-    "JSONStream": "1.1.1",
+    "JSONStream": "^1.1.1",
     "adm-zip": "0.4.7",
     "async": "1.4.2",
     "csvtojson": "0.4.2",

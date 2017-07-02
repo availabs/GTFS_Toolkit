@@ -251,7 +251,7 @@ function unzipStaticGTFS (callback) {
 function indexGTFSData (callback) {
     var indexingTasks = [
             scheduleDataIndexer.run.bind(null, config.workDirPath, config) ,
-            spatialDataIndexer.run.bind(null, config.workDirPath, config)  ,
+            // spatialDataIndexer.run.bind(null, config.workDirPath, config)  ,
         ];
 
     sendMessageToParentProcess({
