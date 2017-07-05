@@ -169,9 +169,9 @@ function cleanup (callback) {
 //================================ The workers ====================================\\
 
 function removeTmpDir (callback) {
-  console.log('not rimraf\'in the tmp dir.')
-  return callback(null)
-    // rimraf(config.workDirPath, callback);
+  // console.log('not rimraf\'in the tmp dir.')
+  // return callback(null)
+  rimraf(config.workDirPath, callback);
 }
 
 
