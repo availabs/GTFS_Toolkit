@@ -6,6 +6,9 @@
   "keywords": [
     "GTFS"
   ],
+  "bin": {
+    "updateGTFSData": "./bin/updateGTFSData.js"
+  },
   "dependencies": {
     "JSONStream": "^1.1.1",
     "adm-zip": "0.4.7",
