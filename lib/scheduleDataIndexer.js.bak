@@ -8,7 +8,8 @@
 
 var fs          = require('fs') ,
     process     = require('process') ,
-    path        = require('path') ;
+    path        = require('path') ,
+    JSONStream  = require('JSONStream') ;
 
 
 function run (workingDirPath, config, runMethodCallback) {
@@ -19,7 +20,7 @@ function run (workingDirPath, config, runMethodCallback) {
         dataDict    = {},
 
         tablePKs    = {
-            // calendar   : 'service_id',
+            calendar   : 'service_id',
             trips      : 'trip_id' ,
             agency     : 'agency_id' ,
             routes     : 'route_id' ,
@@ -54,54 +55,40 @@ function run (workingDirPath, config, runMethodCallback) {
 
         if (i === tables.length) {
             try {
-                var wstream = fs.createWriteStream(config.indexedScheduleDataFilePath);
-                
-                wstream.on('error', function errorHandler (err) {
-                    sendMessageToParentProcess({
-                        error: 'Error occurred writing the indexed GTFS schedule data to disk.' ,
-                    });
-                    runMethodCallback && runMethodCallback((runMethodCallback = null) && err);
-                })
-                
-                wstream.on('finish', function finshHandler () {
-                    sendMessageToParentProcess({
-                        info: 'Indexed GTFS schedule data written to disk.' ,
-                    }); 
-                    runMethodCallback && runMethodCallback((runMethodCallback = null));
-                })
-                
+console.log('=== JSON Stream ===')
+                var transformStream = JSONStream.stringifyObject('{', ',', '}');
+                var outputStream = fs.createWriteStream(config.indexedScheduleDataFilePath);
+                transformStream.pipe( outputStream );    
+
                 var keys = Object.keys(dataDict)
 
-                wstream.write('{')  // 1st brace
-                for (var k = 0; k < keys.length; ++k) {
-                  var key = keys[k]
-                  var data = dataDict[key]
+                keys.forEach(function (k) {
+                  transformStream.write([k, dataDict[k]]);
+                })
 
-                  if (k) {  // If not first sub-obj, need a comma
-                    wstream.write(',')
-                  }
+                transformStream.end();
 
-                  wstream.write('"' + key + '":{')
-
-                  var keys2 = Object.keys(data)
-
-                  for (var k2 = 0; k2 < keys2.length; ++k2) {
-                    var key2 = keys2[k2]
-                    var data2 = data[key2]
-
-                    if (k2) {  // If not first sub-obj, need a comma
-                      wstream.write(',')
+                outputStream.on(
+                    "error",
+                    function handleError(err) {
+                        sendMessageToParentProcess({
+                            error: 
+                              'Error occurred writing the indexed GTFS schedule data to disk:\n' +
+                              err.message 
+                        });
+                        runMethodCallback((runMethodCallback = null) || err);
                     }
+                );
 
-                    wstream.write('"' + key2 + '":' + JSON.stringify(data2)) 
-                  } 
-                  
-                  wstream.write('}') // close the depth-1 obj
-                } 
-
-                wstream.write('}') // Last brace
-
-                wstream.end()
+                outputStream.on(
+                    "finish",
+                    function handleFinish() {
+                          sendMessageToParentProcess({
+                              info: 'Indexed GTFS schedule data written to disk.' ,
+                          });
+                          runMethodCallback((runMethodCallback = null));
+                      }
+                );
 
                 return;
             } catch (err) {
@@ -137,12 +124,11 @@ function run (workingDirPath, config, runMethodCallback) {
             sendMessageToParentProcess({ debug: ('Reading ' + tableName + '.txt') , });
 
             fs.createReadStream(filePath)
-              .on('error', function (err) {
-                    var msg = 'The schedule data indexer encountered an error reading from ' + 
-                              tableName + '.txt' ;
+              .on('error', function () {
+                    var msg = 'The spatial data indexer encountered an error reading from ' + tableName + '.txt' ;
 
                     sendMessageToParentProcess({ error: msg }) ;
-                    console.error(err) ;
+                    console.warn(msg) ;
                   })
               .pipe(converter) ;
 
