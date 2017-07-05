@@ -169,7 +169,9 @@ function cleanup (callback) {
 //================================ The workers ====================================\\
 
 function removeTmpDir (callback) {
-    rimraf(config.workDirPath, callback);
+  console.log('not rimraf\'in the tmp dir.')
+  return callback(null)
+    // rimraf(config.workDirPath, callback);
 }
 
 
@@ -251,7 +253,7 @@ function unzipStaticGTFS (callback) {
 function indexGTFSData (callback) {
     var indexingTasks = [
             scheduleDataIndexer.run.bind(null, config.workDirPath, config) ,
-            // spatialDataIndexer.run.bind(null, config.workDirPath, config)  ,
+            spatialDataIndexer.run.bind(null, config.workDirPath, config)  ,
         ];
 
     sendMessageToParentProcess({
